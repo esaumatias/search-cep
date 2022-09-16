@@ -3,8 +3,9 @@ import { StyleSheet, TextInput, View, TouchableOpacity, Text, Alert } from 'reac
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from "@react-native-material/core";
 import { fetchCep } from '../Services/index';
+import AllCads from '../Components/AllCads';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [cep, setCep] = useState("");
   const [listCeps, setListCeps] = useState([]);
   const [open, setOpen] = useState(false);
@@ -63,6 +64,13 @@ export default function Home() {
           setValue={setValue}
           setItems={setItems}
         />
+      </View>
+      <View>
+        {listCeps.length !== 0 && value === "UF - Cidade" ? (
+          <AllCads ceps={listCeps} listOrder />
+        ) : (
+          <AllCads ceps={listCeps} />
+        )}
       </View>
     </View>
   );
