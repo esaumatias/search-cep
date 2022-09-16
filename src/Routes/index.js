@@ -15,8 +15,8 @@ function Router() {
           component={Home}
           options={{
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#c6ab31" },
-            headerTintColor: "#fff",
+            headerStyle: { backgroundColor: "#f7dd52" },
+            headerTintColor: "#202020",
             headerTitleStyle: {
               fontWeight: "bold",
             },
