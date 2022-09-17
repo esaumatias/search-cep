@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Text, Alert } from 'react-native';
+import { StyleSheet, TextInput, View, Text, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { Badge, Stack } from "@react-native-material/core";
 import { Button } from "@react-native-material/core";
 import { fetchCep } from '../Services/index';
 import AllCads from '../Components/AllCads';
@@ -8,6 +9,8 @@ import AllCads from '../Components/AllCads';
 export default function Home({ navigation }) {
   const [cep, setCep] = useState("");
   const [listCeps, setListCeps] = useState([]);
+  const [count, setCount] = useState(0);
+  const [reloadPage ,setReloadPage] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -31,7 +34,12 @@ export default function Home({ navigation }) {
       setListCeps([...listCeps, response]);
     }
     setCep("");
+    setReloadPage(!reloadPage);
   };
+
+  useEffect(() => {
+    setCount(listCeps.length);
+  }, [reloadPage]);
 
   return (
     <View style={styles.container}>
@@ -67,10 +75,14 @@ export default function Home({ navigation }) {
       </View>
       <View>
         {listCeps.length !== 0 && value === "UF - Cidade" ? (
-          <AllCads ceps={listCeps} listOrder />
+          <AllCads listCeps={listCeps} listOrder navigation={navigation}/>
         ) : (
-          <AllCads ceps={listCeps} />
+          <AllCads listCeps={listCeps} navigation={navigation}/>
         )}
+        <View style={styles.containerCount}>
+          <Text>Total de pesquisas: </Text>
+          <Badge label={count} color="#f7dd52" />
+        </View>
       </View>
     </View>
   );
@@ -86,6 +98,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10
+  },
+  containerCount: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    marginTop: 15,
   },
   input: {
     backgroundColor: "#fff",
