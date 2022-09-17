@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Home from '../Screens/index';
 import DetailsCard from '../Components/DetailsCard';
+import itemSelf from '../Components/itemSelf';
 
 const MainStack = createNativeStackNavigator();
 
@@ -26,6 +27,18 @@ function Router() {
         <MainStack.Screen
           name="DETAIL"
           component={DetailsCard}
+          options={{
+            headerTitleAlign: "center",
+            headerStyle: { backgroundColor: "#f7dd52" },
+            headerTintColor: "#202020",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <MainStack.Screen
+          name="ITEM"
+          component={itemSelf}
           options={{
             headerTitleAlign: "center",
             headerStyle: { backgroundColor: "#f7dd52" },

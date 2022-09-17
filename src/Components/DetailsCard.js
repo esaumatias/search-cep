@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const DetailsCard = ({ route }) => {
+const ITEMsCard = ({ route, navigation }) => {
   const {
     bairro,
     cep,
@@ -22,13 +22,62 @@ const DetailsCard = ({ route }) => {
         <Text style={styles.subtitle}>
           {titlePage ? "Listagen UF - Cidade" : "Listagen Cidade - Logradouro"}
         </Text>
-        <Text style={styles.text}>CEP: {cep}</Text>
-        <Text style={styles.text}>UF: {uf}</Text>
-        <Text style={styles.text}>Cidade: {localidade}</Text>
-        <Text style={styles.text}>DDD: {ddd}</Text>
-        <Text style={styles.text}>Bairro: {bairro}</Text>
-        <Text style={styles.text}>Complemento: {complemento}</Text>
-        <Text style={styles.text}>Logradouro: {logradouro}</Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `CEP: ${cep}`, titlePage: true })
+          }
+        >
+          CEP: {cep}
+        </Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `UF: ${uf}`, titlePage: false })
+          }
+        >
+          UF: {uf}
+        </Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `Cidade: ${localidade}`, titlePage: true })
+          }
+        >
+          Cidade: {localidade}
+        </Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `DDD: ${ddd}`, titlePage: true })
+          }
+        >
+          DDD: {ddd}
+        </Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `Bairro: ${bairro}`, titlePage: true })
+          }
+        >
+          Bairro: {bairro}
+        </Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `Complemento: ${complemento}`, titlePage: true })
+          }
+        >
+          Complemento: {complemento}
+        </Text>
+        <Text
+          style={styles.text}
+          onPress={() =>
+            navigation.navigate("ITEM", { item: `Logradouro: ${logradouro}`, titlePage: true })
+          }
+        >
+          Logradouro: {logradouro}
+        </Text>
       </View>
     </View>
   );
@@ -55,7 +104,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 15,
     marginTop: 5,
+    textDecorationLine: "underline"
   },
 });
 
-export default DetailsCard;
+export default ITEMsCard;
